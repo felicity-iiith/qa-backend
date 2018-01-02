@@ -5,6 +5,16 @@ const User = db.define("user", {
   username: {
     type: Sequelize.STRING,
     primaryKey: true
+  },
+  score: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  maxUnlock: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 1
   }
 });
 

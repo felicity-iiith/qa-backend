@@ -10,8 +10,8 @@ export default function generateApiDocs(routers) {
   const spec = generator.generateSpec(
     {
       info: {
-        title: "Base API",
-        description: "API for creating and editing examples.",
+        title: "QA portal API",
+        description: "API for getting questions and submitting answers.",
         version: "1.1"
       },
       basePath: "/",
