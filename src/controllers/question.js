@@ -1,5 +1,6 @@
 import Question from "../models/Question";
 import Submission from "../models/Submission";
+import Level from "../models/Level";
 
 import addSubmission from "../helpers/addSubmission";
 import updateUser from "../helpers/updateUser";
@@ -28,7 +29,8 @@ export async function getAll(ctx) {
 
   ctx.body = await Question.findAll({
     attributes: { exclude: ["answer", "body"] },
-    order: [["qno"]]
+    order: [["qno"]],
+    include: [Level]
   });
   ctx.body = ctx.body.map(question => question.toJSON());
   ctx.body.forEach(question => (question.solved = false));

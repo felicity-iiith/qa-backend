@@ -11,7 +11,7 @@ const User = db.define("user", {
     allowNull: false,
     defaultValue: 0
   },
-  maxUnlock: {
+  maxLevel: {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 1
