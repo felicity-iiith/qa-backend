@@ -10,10 +10,14 @@ export default async function updateUser(user) {
     include: [Question]
   });
   let score = 0,
-    maxSolved = 0;
+    maxSolved = 0,
+    solved = {};
   for (const submission of submissions) {
+    const qno = submission.question.qno;
+    if (solved[qno]) continue;
+    solved[qno] = true;
     score += submission.question.score;
-    maxSolved = Math.max(submission.question.qno, maxSolved);
+    maxSolved = Math.max(qno, maxSolved);
   }
   return await user.update({
     score,
