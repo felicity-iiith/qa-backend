@@ -4,6 +4,7 @@
 import Submission from "../models/Submission";
 
 export default async function addSubmission(user, question, answer) {
+  answer = answer.toLowerCase();
   const status = JSON.parse(question.answer).indexOf(answer) != -1;
   await Submission.findOrCreate({
     where: {
