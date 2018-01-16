@@ -33,6 +33,24 @@ const config = convict({
     format: "url",
     default: "http://localhost:3000",
     env: "PUBLIC_FRONTEND_URL"
+  },
+  startTime: {
+    doc: "The start time of the contest",
+    format: "timestamp",
+    default: 0,
+    env: "START_TIME"
+  },
+  endTime: {
+    doc: "The end time of the contest",
+    format: "timestamp",
+    default: 1540405800000,
+    env: "END_TIME"
+  },
+  admins: {
+    doc: "Admins array",
+    format: Array,
+    default: ["admin"],
+    env: "ADMINS"
   }
 });
 

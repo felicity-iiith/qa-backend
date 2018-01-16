@@ -7,6 +7,7 @@ import { dbconnect } from "./models/db";
 import setupModels from "./models/setupModels";
 
 import authMiddleware from "./middleware/auth";
+import isOpenMiddleware from "./middleware/isOpen";
 
 async function setup() {
   await dbconnect();
@@ -14,6 +15,7 @@ async function setup() {
   const app = new Koa();
   if (!isProd) app.use(cors());
   app.use(authMiddleware);
+  app.use(isOpenMiddleware);
   app.use(routes);
   await app.listen(config.get("port"));
 }
