@@ -2,9 +2,11 @@
 // The contest is always open on the scoreboard and users route
 // And always open for the admins
 
+import isAdminHelper from "../helpers/isAdmin";
+
 export default async function(ctx, next) {
   const allow =
-    config.get("admins").indexOf(ctx.state.user.username) != -1 ||
+    isAdminHelper(ctx.state.user.username) ||
     ctx.request.path.startsWith("/scoreboard") ||
     ctx.request.path.startsWith("/users") ||
     (Date.now() > config.get("startTime") &&
