@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 import db from "./db";
 
+// XXX: Actually stores team, such haxxx
 const User = db.define("user", {
   username: {
     type: Sequelize.STRING,

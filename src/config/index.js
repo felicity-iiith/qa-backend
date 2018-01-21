@@ -57,6 +57,12 @@ const config = convict({
     format: Number,
     default: 100,
     env: "MAX_SUBMISSIONS"
+  },
+  teamWebhookPassword: {
+    doc: "Password for team webhook",
+    format: String,
+    default: "password",
+    env: "TEAM_WEBHOOK_PASSWORD"
   }
 });
 

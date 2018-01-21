@@ -1,4 +1,5 @@
 import User from "../models/User";
+import TeamMembers from "../models/TeamMembers";
 
 const mock_userinfo = {
   id: "b055c3dd-1341-43c7-9668-18bb435c1e31", // random uuid
@@ -13,6 +14,7 @@ const mock_userinfo = {
 
 // Global middleware function to get username from header set by api gateway
 export default async function(ctx, next) {
+  if (ctx.request.url.startsWith("/teams")) return next();
   let userinfo =
     ctx.header["x-userinfo"] && JSON.parse(ctx.header["x-userinfo"]);
   if (!isProd && !userinfo) {
@@ -23,9 +25,15 @@ export default async function(ctx, next) {
     };
   }
   if (userinfo) {
-    [ctx.state.user] = await User.findOrCreate({
-      where: { username: userinfo.username }
+    const team = await TeamMembers.findOne({
+      where: { username: userinfo.username },
+      include: [User]
     });
+    if (!team) {
+      ctx.status = 401;
+      return;
+    }
+    ctx.state.user = team.user;
   }
   ctx.state.userinfo = userinfo;
   ctx.state.isAuthenticated = !!ctx.state.user; // Always true

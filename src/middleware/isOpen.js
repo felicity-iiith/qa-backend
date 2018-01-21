@@ -5,6 +5,7 @@
 import isAdminHelper from "../helpers/isAdmin";
 
 export default async function(ctx, next) {
+  if (ctx.request.url.startsWith("/teams")) return next();
   const allow =
     isAdminHelper(ctx.state.user.username) ||
     ctx.request.path.startsWith("/scoreboard") ||
