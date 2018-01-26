@@ -51,6 +51,12 @@ const config = convict({
     format: Array,
     default: ["admin"],
     env: "ADMINS"
+  },
+  maxSubmissions: {
+    doc: "Max submissions per question",
+    format: Number,
+    default: 100,
+    env: "MAX_SUBMISSIONS"
   }
 });
 
