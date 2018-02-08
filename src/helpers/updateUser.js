@@ -20,7 +20,6 @@ export default async function updateUser(user) {
     maxSolved = Math.max(qno, maxSolved);
   }
   return await user.update({
-    score,
-    maxUnlock: maxSolved + 1
+    score
   });
 }
