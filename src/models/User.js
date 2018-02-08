@@ -14,7 +14,7 @@ const User = db.define("user", {
   maxUnlock: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 1
+    defaultValue: 25000 // HACK: since there will never be more questions than this
   }
 });
 
